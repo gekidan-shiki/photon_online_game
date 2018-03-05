@@ -6,19 +6,19 @@ using UnityEngine.UI;
 
 namespace Com.MyCompany.MyGame
 {
-	public class RoomInfoUIScript : Photon.MonoBehaviour {
+  public class RoomInfoUIScript : Photon.MonoBehaviour {
 
-		public Text RoomMemberCountText;
+    public Text RoomMemberCountText;
 
-		public Room room = PhotonNetwork.room;
+    public Room room = PhotonNetwork.room;
 
-	  void Start () {
-		
-	  }
-	
-	  void Update () {
-		  RoomMemberCountText.text = "ルーム内人数 " + room.playerCount.ToString();
-	  }
+    void Start () {
+
+    }
+
+    void Update () {
+      RoomMemberCountText.text = "ルーム内人数 " + room.playerCount.ToString();
+    }
   }	
 }
 
