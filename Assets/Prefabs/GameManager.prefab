@@ -53,3 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1089149546789756, guid: 3fdd7a9f8b0f14373aad62380335500c,
     type: 2}
+  GameStartButton: {fileID: 0}
+  playerStartPos: {fileID: 0}
+  demonStartPos: {fileID: 0}

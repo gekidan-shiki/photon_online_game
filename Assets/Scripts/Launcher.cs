@@ -7,49 +7,49 @@ using UnityEngine.SceneManagement;
 
 namespace Com.MyCompany.MyGame
 {
-	public class Launcher : Photon.PunBehaviour {
+  public class Launcher : Photon.PunBehaviour {
 
     string _gameVersion = "1";
-		bool isConnecting;
+    bool isConnecting;
 
-		public byte MaxPlayersPerRoom = 4;
+    public byte MaxPlayersPerRoom = 4;
 
-		void Awake () {
-			PhotonNetwork.autoJoinLobby = false;
-		}
+    void Awake () {
+      PhotonNetwork.autoJoinLobby = false;
+    }
 
-	  void Start () {
-		
-	  }
-	
-	  void Update () {
-		
-	  }
+    void Start () {
 
-		// this method gets called when autoJoinLobby() is false, and connect to Photon.
-		public override void OnConnectedToMaster () {
-			if (isConnecting) {
-				PhotonNetwork.JoinLobby();
-				SceneManager.LoadScene("Lobby");
-			}
-		}
+    }
 
-		public override void OnJoinedLobby () {
-			if (isConnecting) {
-				Debug.Log("Lobbyに入りました");
-		  	//PhotonNetwork.JoinRandomRoom();
-			}
-		}
+    void Update () {
 
-		public void Connect () {
-			isConnecting = true;
-			if (PhotonNetwork.connected) {
-				PhotonNetwork.JoinLobby();
-				SceneManager.LoadScene("Lobby");
-			} else {
-				PhotonNetwork.ConnectUsingSettings(_gameVersion);
-			}
-		}
+    }
+
+    // this method gets called when autoJoinLobby() is false, and connect to Photon.
+    public override void OnConnectedToMaster () {
+      if (isConnecting) {
+        PhotonNetwork.JoinLobby();
+        SceneManager.LoadScene("Lobby");
+      }
+    }
+
+    public override void OnJoinedLobby () {
+      if (isConnecting) {
+        Debug.Log("Lobbyに入りました");
+        //PhotonNetwork.JoinRandomRoom();
+      }
+    }
+
+    public void Connect () {
+      isConnecting = true;
+      if (PhotonNetwork.connected) {
+        PhotonNetwork.JoinLobby();
+        SceneManager.LoadScene("Lobby");
+      } else {
+        PhotonNetwork.ConnectUsingSettings(_gameVersion);
+      }
+    }
   }
-	
+
 }

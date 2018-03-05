@@ -7,6 +7,9 @@ namespace Com.MyCompany.MyGame
 	public class PlayerManager : Photon.PunBehaviour {
 
 		public static GameObject LocalPlayerInstance;
+		
+		public bool isPlayerDemon = false;
+		public bool isPlayingFlg = false;
 
 		void Awake () {
 			if (photonView.isMine) {
@@ -16,6 +19,7 @@ namespace Com.MyCompany.MyGame
 		}
 
 	  void Start () {
+			
 			CameraWork _cameraWork = this.gameObject.GetComponent<CameraWork>();
 			if (_cameraWork != null) {
 				if (photonView.isMine) {
