@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4772667631765554}
+  - component: {fileID: 114377910878087492}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -39,3 +40,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114377910878087492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509501571213138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cedf0b4b974c74fe4bd624e5a55881bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeyObjectPrefab: {fileID: 1639126827606300, guid: 1c41a94ad72c5490087b794c6dd1ac0e,
+    type: 2}
+  KeyObjectSpawnPos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

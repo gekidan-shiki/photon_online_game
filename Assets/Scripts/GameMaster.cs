@@ -12,6 +12,15 @@ namespace Com.MyCompany.MyGame
 
     static public GameMaster Instance;
 
+    public GameObject KeyObjectPrefab;
+
+    public List<GameObject> keyObjects = new List<GameObject>();
+
+    public int activeKeyObjectsCount = 0;
+
+    // this GameObject array spawn KeyObject.
+    public GameObject[] KeyObjectSpawnPos;
+
 
     void Start () {
       // GameMaster prefab is instantiate only by MasterClient.
@@ -25,6 +34,14 @@ namespace Com.MyCompany.MyGame
 
     }
 
-  }	
+    public void CreateKeyObject () {
+      for (int i = 0; i < PhotonNetwork.room.PlayerCount + 2; i++) {
+        GameObject keyObject = PhotonNetwork.Instantiate("KeyObject", KeyObjectSpawnPos[i].transform.position, Quaternion.identity, 0) as GameObject;
+        keyObjects.Add(keyObject);
+        activeKeyObjectsCount++;
+      }
+    }
+
+  }
 }
 

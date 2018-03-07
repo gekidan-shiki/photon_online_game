@@ -15,6 +15,8 @@ namespace Com.MyCompany.MyGame
     public GameObject GameStartButton;
     public GameObject playerStartPos;
     public GameObject demonStartPos;
+    
+    GameObject gameMaster;
 
     GameObject myPlayer;
 
@@ -37,6 +39,8 @@ namespace Com.MyCompany.MyGame
       if (!PhotonNetwork.isMasterClient) {
         GameStartButton.SetActive(false);
       }
+
+      gameMaster = GameObject.Find("GameMaster");
     }
 
     void Update () {
@@ -62,6 +66,7 @@ namespace Com.MyCompany.MyGame
       for (int i = 0; i < Players.Length; i++) {
         Players[i].GetComponent<PlayerManager>().isPlayingFlg = true;
       }
+      gameMaster.GetComponent<GameMaster>().CreateKeyObject();
     }
   }	
 }
