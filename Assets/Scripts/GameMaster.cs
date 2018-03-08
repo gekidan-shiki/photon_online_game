@@ -35,7 +35,7 @@ namespace Com.MyCompany.MyGame
     }
 
     public void CreateKeyObject () {
-      for (int i = 0; i < PhotonNetwork.room.PlayerCount + 2; i++) {
+      for (int i = 0; i < PhotonNetwork.room.PlayerCount + 3; i++) {
         GameObject keyObject = PhotonNetwork.Instantiate("KeyObject", KeyObjectSpawnPos[i].transform.position, Quaternion.identity, 0) as GameObject;
         keyObjects.Add(keyObject);
         activeKeyObjectsCount++;

@@ -9,7 +9,6 @@ namespace Com.MyCompany.MyGame
     public static GameObject LocalPlayerInstance;
 
     public bool isPlayerDemon = false;
-    public bool isPlayingFlg = false;
 
     void Awake () {
       if (photonView.isMine) {

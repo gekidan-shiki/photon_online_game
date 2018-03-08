@@ -17,7 +17,6 @@ namespace Com.MyCompany.MyGame
     public GameObject demonStartPos;
     
     GameObject gameMaster;
-
     GameObject myPlayer;
 
     void Start () {
@@ -61,11 +60,8 @@ namespace Com.MyCompany.MyGame
 
     public void GameStartFunc () {
       myPlayer.transform.position = demonStartPos.transform.position;
-      myPlayer.GetComponent<PlayerManager>().isPlayerDemon = true;
-      GameObject[] Players = GameObject.FindGameObjectsWithTag("Player");
-      for (int i = 0; i < Players.Length; i++) {
-        Players[i].GetComponent<PlayerManager>().isPlayingFlg = true;
-      }
+      PlayerManager myPlayerManager = myPlayer.GetComponent<PlayerManager>();
+      myPlayerManager.isPlayerDemon = true;
       gameMaster.GetComponent<GameMaster>().CreateKeyObject();
     }
   }	

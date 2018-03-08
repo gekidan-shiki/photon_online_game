@@ -8,6 +8,11 @@ namespace Com.MyCompany.MyGame
 
     public float playerSpeed = 5;
     public float playerRotation = 90;
+    public float playerBulletSpeed = 1000;
+
+    //public GameObject playerBulletPrefab;
+    //public GameObject demonBulletPrefab;
+    public Transform muzzle;
 
     void Start () {
 
@@ -18,6 +23,7 @@ namespace Com.MyCompany.MyGame
         return;
       }
       Move();
+      Shoot();
     }
 
     public void Move () {
@@ -32,6 +38,20 @@ namespace Com.MyCompany.MyGame
       }
       if (Input.GetKey("left")) {
         this.transform.Rotate(new Vector3(0, -playerRotation * Time.deltaTime, 0));
+      }
+    }
+
+    public void Shoot () {
+      if (Input.GetKeyDown(KeyCode.Z)) {
+        GameObject bullets;
+        if (PhotonNetwork.isMasterClient) {
+          bullets = PhotonNetwork.Instantiate("DemonBullet", muzzle.transform.position, Quaternion.identity, 0);
+        } else {
+          bullets = PhotonNetwork.Instantiate("PlayerBullet", muzzle.transform.position, Quaternion.identity, 0);
+        }
+        Vector3 force;
+        force = this.gameObject.transform.forward * playerBulletSpeed;
+        bullets.GetComponent<Rigidbody>().AddForce(force);
       }
     }
   }	
