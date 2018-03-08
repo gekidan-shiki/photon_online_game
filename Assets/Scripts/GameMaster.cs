@@ -34,6 +34,14 @@ namespace Com.MyCompany.MyGame
 
     }
 
+    void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info) {
+      if (stream.isWriting) {
+        stream.SendNext(activeKeyObjectsCount);
+      } else {
+        this.activeKeyObjectsCount = (int)stream.ReceiveNext();
+      }
+    }
+
     public void CreateKeyObject () {
       for (int i = 0; i < PhotonNetwork.room.PlayerCount + 3; i++) {
         GameObject keyObject = PhotonNetwork.Instantiate("KeyObject", KeyObjectSpawnPos[i].transform.position, Quaternion.identity, 0) as GameObject;

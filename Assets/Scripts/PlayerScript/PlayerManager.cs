@@ -10,7 +10,7 @@ namespace Com.MyCompany.MyGame
 
     public bool isPlayerDemon = false;
 
-    public float playerHP = 10;
+    public float playerHP = 10f;
 
     void Awake () {
       if (photonView.isMine) {
@@ -36,14 +36,11 @@ namespace Com.MyCompany.MyGame
 
     }
 
-    void OnTriggerEnter (Collider other) {
-      if (!photonView.isMine) {
-        return;
-      }
-      // Demon is invincible
-      if (other.gameObject.tag == "DemonBullet") {
-        playerHP -= 5;
-        Debug.Log("ちんちん");
+    void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info) {
+      if (stream.isWriting) {
+        stream.SendNext(playerHP);
+      } else {
+        this.playerHP = (float)stream.ReceiveNext();
       }
     }
   }

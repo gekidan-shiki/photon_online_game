@@ -12,11 +12,19 @@ namespace Com.MyCompany.MyGame
     GameMaster _gameMaster;
 
     void Start () {
-      //_gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+      _gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
       isActive = true;
     }
 
     void Update () {
+      if (isActive) {
+        if (keyObjectHP <= 0) {
+          _gameMaster.activeKeyObjectsCount -= 1;
+          isActive = false;
+        }
+      } else {
+        return;
+      }
     }
 
     void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info) {
@@ -29,22 +37,21 @@ namespace Com.MyCompany.MyGame
       }
     }
 
-		void OnTriggerEnter (Collider col) {
-			if (!photonView.isMine) {
-				return;
-			}
+    void OnTriggerEnter (Collider col) {
+      if (!photonView.isMine) {
+        return;
+      }
       if (col.gameObject.tag == "Player" || col.gameObject.tag == "Demon") {
         keyObjectHP -= 1f;
-        Debug.Log("グハハ");
       }
-		}
+    }
 
     void OnTriggerStay (Collider col) {
       if (!photonView.isMine) {
         return;
       }
       if (col.gameObject.tag == "Player" || col.gameObject.tag == "Demon") {
-        keyObjectHP -= 1f * Time.deltaTime;
+        keyObjectHP -= 10f * Time.deltaTime;
       }
     }
   }	
