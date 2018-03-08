@@ -10,6 +10,8 @@ namespace Com.MyCompany.MyGame
 
     public bool isPlayerDemon = false;
 
+    public float playerHP = 10;
+
     void Awake () {
       if (photonView.isMine) {
         PlayerManager.LocalPlayerInstance = this.gameObject;
@@ -32,6 +34,17 @@ namespace Com.MyCompany.MyGame
 
     void Update () {
 
+    }
+
+    void OnTriggerEnter (Collider other) {
+      if (!photonView.isMine) {
+        return;
+      }
+      // Demon is invincible
+      if (other.gameObject.tag == "DemonBullet") {
+        playerHP -= 5;
+        Debug.Log("ちんちん");
+      }
     }
   }
 

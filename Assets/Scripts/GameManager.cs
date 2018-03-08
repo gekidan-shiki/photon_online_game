@@ -62,6 +62,7 @@ namespace Com.MyCompany.MyGame
       myPlayer.transform.position = demonStartPos.transform.position;
       PlayerManager myPlayerManager = myPlayer.GetComponent<PlayerManager>();
       myPlayerManager.isPlayerDemon = true;
+      myPlayer.tag = "Demon";
       gameMaster.GetComponent<GameMaster>().CreateKeyObject();
     }
   }	
