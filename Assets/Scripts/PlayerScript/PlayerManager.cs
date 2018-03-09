@@ -9,8 +9,11 @@ namespace Com.MyCompany.MyGame
     public static GameObject LocalPlayerInstance;
 
     public bool isPlayerDemon = false;
+    public bool isPlaying = false;
 
     public float playerHP = 10f;
+
+    GameMaster _gameMaster;
 
     void Awake () {
       if (photonView.isMine) {
@@ -30,19 +33,31 @@ namespace Com.MyCompany.MyGame
         Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.",this);
       }
 
+      _gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+
     }
 
     void Update () {
+      if (!photonView.isMine) {
+        return;
+      }
+      if (isPlaying != _gameMaster.masterBePlaying) {
+        isPlaying = _gameMaster.masterBePlaying;
+      }
 
     }
 
     void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info) {
       if (stream.isWriting) {
         stream.SendNext(playerHP);
+        stream.SendNext(isPlaying);
       } else {
         this.playerHP = (float)stream.ReceiveNext();
+        this.isPlaying = (bool)stream.ReceiveNext();
       }
     }
+
+
   }
 
 }

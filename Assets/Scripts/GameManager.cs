@@ -16,8 +16,9 @@ namespace Com.MyCompany.MyGame
     public GameObject playerStartPos;
     public GameObject demonStartPos;
     
-    GameObject gameMaster;
     GameObject myPlayer;
+
+    GameMaster _gameMaster;
 
     void Start () {
       Instance = this;
@@ -39,7 +40,6 @@ namespace Com.MyCompany.MyGame
         GameStartButton.SetActive(false);
       }
 
-      gameMaster = GameObject.Find("GameMaster");
     }
 
     void Update () {
@@ -63,7 +63,10 @@ namespace Com.MyCompany.MyGame
       PlayerManager myPlayerManager = myPlayer.GetComponent<PlayerManager>();
       myPlayerManager.isPlayerDemon = true;
       myPlayer.tag = "Demon";
-      gameMaster.GetComponent<GameMaster>().CreateKeyObject();
+      _gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
+      _gameMaster.CreateKeyObject();
+      _gameMaster.masterBePlaying = true;
     }
+    
   }	
 }

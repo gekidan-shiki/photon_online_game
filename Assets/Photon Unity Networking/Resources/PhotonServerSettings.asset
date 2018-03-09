@@ -44,4 +44,10 @@ MonoBehaviour:
   - TaggedPlayer
   - GameStartFunc
   - SetUpPlayingFlg
+  - SetActiveKeyObjectCount
+  - SetKeyObjectCount
+  - TestRPC
+  - DemoRPC
+  - SpreadIsPlaying
+  - SetUpIsPlaying
   DisableAutoOpenWizard: 1

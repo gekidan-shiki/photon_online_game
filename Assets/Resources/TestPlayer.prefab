@@ -219,6 +219,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 114013255949416680}
+  - {fileID: 114472193061072050}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -252,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerDemon: 0
+  isPlaying: 0
   playerHP: 10
 --- !u!114 &114537656693936306
 MonoBehaviour:

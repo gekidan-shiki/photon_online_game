@@ -17,6 +17,7 @@ namespace Com.MyCompany.MyGame
     public List<GameObject> keyObjects = new List<GameObject>();
 
     public int activeKeyObjectsCount = 0;
+    public bool masterBePlaying = false;
 
     // this GameObject array spawn KeyObject.
     public GameObject[] KeyObjectSpawnPos;
@@ -37,8 +38,10 @@ namespace Com.MyCompany.MyGame
     void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info) {
       if (stream.isWriting) {
         stream.SendNext(activeKeyObjectsCount);
+        stream.SendNext(masterBePlaying);
       } else {
         this.activeKeyObjectsCount = (int)stream.ReceiveNext();
+        this.masterBePlaying = (bool)stream.ReceiveNext();
       }
     }
 
