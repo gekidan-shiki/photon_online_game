@@ -12,6 +12,7 @@ namespace Com.MyCompany.MyGame
     public bool isPlaying = false;
 
     public float playerHP = 10f;
+    public bool playerIsAlive = true;
 
     GameMaster _gameMaster;
 
@@ -49,11 +50,19 @@ namespace Com.MyCompany.MyGame
 
     void OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info) {
       if (stream.isWriting) {
-        stream.SendNext(playerHP);
         stream.SendNext(isPlaying);
+        stream.SendNext(playerHP);
+        stream.SendNext(playerIsAlive);
       } else {
-        this.playerHP = (float)stream.ReceiveNext();
         this.isPlaying = (bool)stream.ReceiveNext();
+        this.playerHP = (float)stream.ReceiveNext();
+        this.playerIsAlive = (bool)stream.ReceiveNext();
+      }
+    }
+
+    void OnCollisionEnter (Collision col) {
+      if (col.gameObject.tag == "DemonBullet") {
+        playerHP -= 5.0f;
       }
     }
 

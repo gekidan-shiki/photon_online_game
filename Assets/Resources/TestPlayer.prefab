@@ -270,6 +270,8 @@ MonoBehaviour:
   playerRotation: 90
   playerBulletSpeed: 1000
   muzzle: {fileID: 4316024933331704}
+  demonBullet: {fileID: 1387282602089942, guid: a9cbc3ce1fa3d40d696fc29c55ec0077,
+    type: 2}
 --- !u!136 &136895709900882272
 CapsuleCollider:
   m_ObjectHideFlags: 1

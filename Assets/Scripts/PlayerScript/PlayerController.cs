@@ -12,6 +12,8 @@ namespace Com.MyCompany.MyGame
 
     public Transform muzzle;
 
+    public GameObject demonBullet;
+
     void Start () {
 
     }
@@ -21,6 +23,9 @@ namespace Com.MyCompany.MyGame
         return;
       }
       Move();
+      if (Input.GetKeyDown(KeyCode.S)) {
+        ControlShoot();
+      }
     }
 
     public void Move () {
@@ -36,6 +41,23 @@ namespace Com.MyCompany.MyGame
       if (Input.GetKey("left")) {
         this.transform.Rotate(new Vector3(0, -playerRotation * Time.deltaTime, 0));
       }
+    }
+
+    public void ControlShoot () {
+      Vector2 posXZ = new Vector2(muzzle.transform.position.x, muzzle.transform.position.z);
+      float angle = transform.eulerAngles.y;
+      this.photonView.RPC("Shoot", PhotonTargets.AllViaServer, posXZ, angle);
+    }
+
+    [PunRPC]
+    private void Shoot (Vector2 i_pos, float i_angle) {
+      if (demonBullet == null) {
+        Debug.Log("demonBullet is null");
+        return;
+      }
+      Vector3 pos = new Vector3(i_pos.x, 1.0f, i_pos.y);
+      Quaternion rot = Quaternion.Euler(0.0f, i_angle, 0.0f);
+      GameObject.Instantiate(demonBullet, pos, rot);
     }
   }	
 }

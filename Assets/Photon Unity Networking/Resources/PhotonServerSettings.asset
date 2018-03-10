@@ -50,4 +50,5 @@ MonoBehaviour:
   - DemoRPC
   - SpreadIsPlaying
   - SetUpIsPlaying
+  - Shoot
   DisableAutoOpenWizard: 1
